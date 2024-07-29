@@ -9,3 +9,7 @@ to add the Todo you can add is by entering your todo title in the input field an
 to delete the Todo you can click on the Todo you want to delete
 
 Your Todos will be saved as long as your localStorage is not cleared
+
+![alt text](<Screenshot from 2024-07-29 17-57-20.png>) 
+![alt text](<Screenshot from 2024-07-29 17-57-37.png>)
+![alt text](<Screenshot from 2024-07-29 17-58-26.png>)
