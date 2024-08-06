@@ -28,7 +28,7 @@ Install my-project with
 
 ```bash
   git clone https://github.com/chalaa/Track.git
-  cd Task4_TODO
+  cd joblisting-task-7
 
   npm install
   npm run dev

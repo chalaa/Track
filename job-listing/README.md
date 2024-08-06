@@ -30,7 +30,7 @@ Install my-project with
 
 ```bash
   git clone https://github.com/chalaa/Track.git
-  cd Task4_TODO
+  cd job-listing
 
   npm install
   npm run dev
