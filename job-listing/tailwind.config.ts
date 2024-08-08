@@ -18,8 +18,14 @@ const config: Config = {
         Epilogue : ['Epilogue', 'sans-serif'],
         Poppins : ['Poppins', 'sans-serif']
       },
-      colors :{
-        'header-color': "#25324B"
+      fontWeight :{
+        Poppins400 : "#202430",
+        Poppins500: "#25324B",
+        Epilogue300: "#202430",
+        Epilogue400: "#A8ADB7",
+        Epilogue500: "#7C8493",
+        Epilogue600: "#D6DDEB",
+        Epilogue700: "#515B6F"
       }
     },
   },
