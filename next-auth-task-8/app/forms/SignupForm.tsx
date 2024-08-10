@@ -5,8 +5,10 @@ import Button from "../components/Button";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-
+import { useRouter } from "next/navigation";
 const SignupForm = () => {
+
+  const router = useRouter()
   const formSchema = z
     .object({
       name: z.string().min(3, { message: "name must be at least 3 character" }),
@@ -33,8 +35,31 @@ const SignupForm = () => {
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit: SubmitHandler<FormType> = (data) => {
+  const onSubmit = async (data:FormType) => {
     console.log("the signup data is ",data)
+
+    try {
+    const res = await fetch("https://akil-backend.onrender.com/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body:JSON.stringify(data)
+    });
+
+    const user = await res.json();
+    console.log(user)
+
+    if (res.ok && user) {
+     
+      router.push(`/auth/verifyemail?email=${data.email}`)
+    } else {
+      console.log(user.message);
+    }
+  }
+  catch(error){
+    console.log(error)
+  }
   };
   return (
     <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>

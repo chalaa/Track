@@ -19,7 +19,6 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { toast } from "@/components/ui/use-toast";
 
 const FormSchema = z.object({
   pin: z.string().min(4, {
@@ -28,6 +27,12 @@ const FormSchema = z.object({
 });
 
 export function InputOTPForm() {
+
+  const alurl = window.location.href;
+  const url = new URL(alurl);
+  const email = url.searchParams.get("email");
+
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -35,16 +40,19 @@ export function InputOTPForm() {
     },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log("the submited pin is", data)
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
+    const res = await fetch("https://akil-backend.onrender.com/verify-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body:JSON.stringify({
+        email: email,
+        otp: data.pin
+      })
     });
+
+    console.log(res)
   }
 
   return (
@@ -54,6 +62,7 @@ export function InputOTPForm() {
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-col gap-5"
         >
+          
           <FormField
             control={form.control}
             name="pin"

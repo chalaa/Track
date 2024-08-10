@@ -1,7 +1,9 @@
+"use client"
 import React from 'react'
 import LoginForm from "../../forms/LoginForm";
 import { Poppins } from "next/font/google";
 import Link from 'next/link';
+import { SessionProvider } from 'next-auth/react';
 
 const poppins = Poppins({ subsets: ["latin"], weight:[ "400","500","600","700","800","900"] });
 
@@ -22,7 +24,9 @@ const Login = () => {
           </div>
           <div className="flex flex-1 bg-gray-500 h-[1px]"></div>
         </div>
-        <LoginForm/>
+        <SessionProvider>
+          <LoginForm/>
+        </SessionProvider>
         <div className="text-gray-500 text-sm">
          Don't have an account?{" "}
          <Link href={"/auth/signup"}>

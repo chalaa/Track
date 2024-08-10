@@ -1,12 +1,18 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { useRouter } from "next/navigation";
+// import { doLogin } from "@/app/actions/action";
+
+import {signIn} from "next-auth/react"
 
 const LoginForm = () => {
+  const [error,setError] = useState("");
+  const router = useRouter();
   const formSchema = z.object({
     email: z.string().email("Invalid Email"),
     password: z
@@ -22,12 +28,26 @@ const LoginForm = () => {
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit: SubmitHandler<FormType> = (data) => {
-    console.log(errors);
-    console.log("the login info is", data);
+  const onSubmit: SubmitHandler<FormType> = async (data) => {
+    console.log(data)
+    const res = await signIn("credentials", {
+      email: data.email,
+      password: data.password,
+      redirect: false,
+    });
+
+    console.log("result is",res)
+    if (res?.error) {
+      setError("invalid Credential");
+    } 
+    if (res?.ok){
+      router.push("/Jobs");
+    }
+    
   };
   return (
     <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
+      {error && <p className="text-red-500 flex justify-center text-xs">{error}</p>}
       <Input 
         labelname="Email Address"
         type="text"

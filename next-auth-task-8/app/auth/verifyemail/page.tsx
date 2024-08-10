@@ -3,8 +3,13 @@ import {InputOTPForm as VerifcationForm} from "../../components/VerificationForm
 import { Poppins } from "next/font/google";
 
 const poppins = Poppins({ subsets: ["latin"], weight:[ "400","500","600","700","800","900"] });
+interface IParams {
+  params:{id:string} ;
+}
+const VerifyEmail = ({params}:IParams) => {
+  
 
-const VerifyEmail = () => {
+  console.log(params);
   return (
     <div className="flex justify-center min-h-screen">
       <div className="flex flex-col gap-11 w-1/2 px-32 my-32">
