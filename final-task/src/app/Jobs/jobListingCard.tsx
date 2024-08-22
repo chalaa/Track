@@ -30,12 +30,8 @@ const JobListingCard = async ({
   access_token
 }: JobListingCardProps) => {
 
-  
-
-  
-
   return (
-    <div className="flex bg-white text-black px-9 py-6 gap-6 rounded-lg border-solid border-2 shadow-lg font-sans mb-9">
+    <div className="flex w-full bg-white text-black px-9 py-6 gap-6 rounded-lg border-solid border-2 shadow-lg font-sans mb-9">
       <Link href={`/Jobs/${id}`}>
         <button className="flex h-fit min-w-16">
           {image ? (
@@ -51,7 +47,7 @@ const JobListingCard = async ({
           )}
         </button>
       </Link>
-      <div className="">
+      <div className="w-full">
         <div className="flex flex-row gap-4  justify-between">
           <Link href={`/Jobs/${id}`}>
             <h1 className="font-bold text-3xl">{title}</h1>

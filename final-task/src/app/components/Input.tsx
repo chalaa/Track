@@ -1,6 +1,7 @@
 import React from "react";
 
 interface InputProps {
+  id:string;
   labelname: string;
   type: string;
   placeholder: string;
@@ -8,13 +9,14 @@ interface InputProps {
   register: any;
   error?: string;
 }
-const Input = ({ labelname, type, placeholder, name,error,register }: InputProps) => {
+const Input = ({ labelname, type, id, placeholder, name,error,register }: InputProps) => {
   return (
     <div className="flex flex-col gap-1">
       <label htmlFor="" className="text-sm font-semibold">
         {labelname}
       </label>
       <input
+        id={id}
         type={type}
         placeholder={placeholder}
         name={name}

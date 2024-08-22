@@ -5,7 +5,7 @@ import { GoDotFill } from "react-icons/go";
 import { Jobs } from "../page"
 import NotFound from "../NotFound";
 import { redirect } from 'next/navigation'
-
+import Header from "@/app/components/Header";
 
 interface JobDetailProps {
   params: {
@@ -34,6 +34,10 @@ const JobsDetail = async ({ params }: JobDetailProps) => {
   const data:Jobs = result.data;
 
   return (
+    <>
+    <div className="bg-white pt-16 pl-32 pr-64">
+      <Header />
+    </div>
     <div className="flex gap-[3.875rem] p-8 bg-white text-black min-h-screen">
       <div className="flex flex-col gap-14 py-[3rem]">
         <div className="flex flex-col gap-4">
@@ -177,6 +181,7 @@ const JobsDetail = async ({ params }: JobDetailProps) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

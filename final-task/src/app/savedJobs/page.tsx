@@ -30,9 +30,6 @@ export interface Jobs {
 }
 const JobListing = async () => {
   const session = await get_user_session();
-  console.log("the user session is", session);
-
-  
 
   const url = "https://akil-backend.onrender.com/opportunities/search";
 

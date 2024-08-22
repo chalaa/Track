@@ -27,13 +27,11 @@ const LoginForm = () => {
   });
 
   const onSubmit: SubmitHandler<FormType> =  async (data) => {
-    console.log(data)
     const res = await  signIn("credentials", {
       email: data.email,
       password: data.password,
       redirect: false,
     });
-    console.log("result is",res)
     if (res?.error) {
       setError("invalid Credential");
     } 
@@ -46,6 +44,7 @@ const LoginForm = () => {
     <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
       {error && <p className="text-red-500 flex justify-center text-xs">{error}</p>}
       <Input 
+        id="email"
         labelname="Email Address"
         type="text"
         placeholder="Enter your email address"
@@ -54,6 +53,7 @@ const LoginForm = () => {
         error={errors.email?.message}
       />
       <Input
+      id="password"
         labelname="Password"
         type="password"
         placeholder="Enter password"
